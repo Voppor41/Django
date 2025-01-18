@@ -1,0 +1,25 @@
+{% extends "fourth_task/menu.html" %}
+
+{% block title %}Subscribes{% endblock %}
+
+{% block pagename %}
+    <h1> Подписки </h1>
+{% endblock %}
+
+{% block menu %}
+    <nav>{{ block.super }}</nav>
+{% endblock %}
+
+{% block content %}
+    <div><h1>Ваши подписки:</h1>
+        <p></p>
+    <h2>Вы подписаны на:</h2>
+    <p></p>
+    <h2>Рекомендуем подписаться: </h2>
+    <ul>
+        {% for group in groups %}
+        <li>{{ group }} <button>{{ subscribe }}</button></li>
+        {% endfor %}
+    </ul></div>
+{% endblock %}
+

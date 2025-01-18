@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My site{% endblock %}</title>
+</head>
+<body>
+    <header>
+        {% block pagename %}
+        <h1>Главная</h1>
+        {% endblock %}
+    </header>
+
+    <nav>
+        {% block menu %}
+        <a href="#"><h3>{{ main }}</h3></a>
+        <a href="http://127.0.0.1:8000/main-page/news-page"> <h3>{{ news }}</h3></a>
+        <a href="http://127.0.0.1:8000/main-page/subscribes-page"><h3>{{ subscribes }}</h3></a>
+        {% endblock %}
+    </nav>
+
+    <footer>
+        {% block content %}
+        {% endblock %}
+    </footer>
+</body>
+</html>
