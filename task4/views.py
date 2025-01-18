@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 # Функция для создания общего контекста меню
 def menu_context():

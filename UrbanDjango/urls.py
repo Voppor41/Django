@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from task4.views import main_page, news_page, subscribes_page, menu
+from task5.views import sign_up_by_django, sign_up_by_html
 
 
 
@@ -27,5 +28,7 @@ urlpatterns = [
     path('main-page/', main_page),
     path('main-page/news-page/', news_page),
     path('main-page/subscribes-page/', subscribes_page),
-
+    path('sign_up_by_django/', sign_up_by_django),
+    path('sign_up_by_html/', sign_up_by_html)
 ]
+
