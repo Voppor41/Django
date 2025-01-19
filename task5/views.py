@@ -6,30 +6,22 @@ from .forms import UserRegister
 users = ['Will Smith', 'John Conor', 'Daenerys Targaryen']
 
 # Регистрация через форму Django
+
 def sign_up_by_django(request):
     info = {}  # Пустой словарь для передачи контекста
     if request.method == 'POST':
-        form = UserRegister(request.POST)  # Форма с данными POST-запроса
+        form = UserRegister(request.POST, users=users)  # Передаем список пользователей в форму
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            confirm_password = form.cleaned_data['confirm_password']
-            age = form.cleaned_data['age']
-
-            # Проверка условий
-            if username in users:
-                info['error'] = "Ошибка: пользователь с таким именем уже существует."
-            elif password != confirm_password:
-                info['error'] = "Ошибка: пароли не совпадают."
-            elif age < 18:
-                info['error'] = "Ошибка: возраст должен быть не менее 18 лет."
-            else:
-                users.append(username)  # Добавляем пользователя в список
-                return HttpResponse(f"Приветствуем, {username}!")
+            # Записываем пользователя и выполняем дополнительные действия, если необходимо
+            users.append(username)  # Добавляем пользователя в список
+            return HttpResponse(f"Приветствуем, {username}!")
         else:
-            info['error'] = "Ошибка: проверьте корректность введенных данных."
+            # Если форма не прошла валидацию, выводим ошибки
+            info['form'] = form  # Передаем форму с ошибками в шаблон
     else:
-        form = UserRegister()  # Пустая форма
+        form = UserRegister(users=users)  # Пустая форма
 
     info['form'] = form  # Передаем форму в шаблон
     return render(request, 'fifth_task/registration_page.html', info)
